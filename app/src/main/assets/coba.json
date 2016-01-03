@@ -1,0 +1,56 @@
+{
+  "type": "container",
+  "nama": "root",
+  "clazz": "vertical",
+  "child": [
+    {
+      "type": "field",
+      "nama": "label",
+      "clazz": "textview",
+      "value": "Name "
+    },
+    {
+      "type": "field",
+      "nama": "xtx",
+      "clazz": "edittext",
+      "value": "Username"
+    },
+    {
+      "type": "field",
+      "nama": "xtxt",
+      "clazz": "textview",
+      "value": "Password"
+    },
+    {
+      "type": "field",
+      "nama": "xtxt",
+      "clazz": "edittext",
+      "value": "Password"
+    },
+   /* {
+      "type": "container",
+      "nama": "root",
+      "clazz": "horizontal",
+      "child": [
+        {
+          "type": "field",
+          "nama": "xtxt",
+          "clazz": "edittext",
+          "value": "Password"
+        },
+        {
+          "type": "field",
+          "nama": "xtxt",
+          "clazz": "edittext",
+          "value": "Password"
+        }
+      ]
+    },*/
+    {
+      "type": "field",
+      "nama": "xtxt",
+      "clazz": "button",
+      "value": "Login"
+    }
+  ]
+}
