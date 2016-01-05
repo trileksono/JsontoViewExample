@@ -11,7 +11,7 @@
     },
     {
       "type": "field",
-      "nama": "xtx",
+      "nama": "txtNama",
       "clazz": "edittext",
       "value": "Username"
     },
@@ -23,34 +23,40 @@
     },
     {
       "type": "field",
-      "nama": "xtxt",
+      "nama": "txtPassword",
       "clazz": "edittext",
       "value": "Password"
     },
-   /* {
+   {
       "type": "container",
       "nama": "root",
       "clazz": "horizontal",
       "child": [
         {
           "type": "field",
-          "nama": "xtxt",
+          "nama": "ting",
           "clazz": "edittext",
           "value": "Password"
         },
         {
           "type": "field",
-          "nama": "xtxt",
-          "clazz": "edittext",
-          "value": "Password"
+          "nama": "tes",
+          "clazz": "Edittext",
+          "value": ""
         }
       ]
-    },*/
+    },
     {
       "type": "field",
-      "nama": "xtxt",
+      "nama": "btnLogin",
       "clazz": "button",
       "value": "Login"
+    },
+    {
+      "type": "field",
+      "nama": "btnLogins",
+      "clazz": "button",
+      "value": "TESTED"
     }
   ]
 }

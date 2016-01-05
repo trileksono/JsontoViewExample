@@ -4,12 +4,14 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.tri.jsontoviewexample.customLayout.HorizontalLayout;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -19,14 +21,13 @@ import com.google.gson.JsonObject;
  */
 public class DynamicLayout {
 
-    ScrollView container;
     LinearLayout root;
     Context mContext;
+    int CURRENT_ID = 20;
 
     public DynamicLayout(Context mContext) {
         this.mContext = mContext;
         this.root = verticalLayout();
-        this.container = new ScrollView(mContext);
     }
 
     /*public View buatLayout(Context mContext) {
@@ -56,12 +57,11 @@ public class DynamicLayout {
             view = verticalLayout();
         }
         if(widget.equals("horizontal")) {
-            view = horizontalLayout();
+            view = new HorizontalLayout(mContext);
         }
 
         root.addView(masukanWidget(view,object));
-        container.addView(root);
-        return container;
+        return root;
     }
 
     public View masukanWidget(View view,JsonObject object){
@@ -69,21 +69,29 @@ public class DynamicLayout {
             ViewGroup vGroup = (ViewGroup) view;
             JsonArray s = object.get("child").getAsJsonArray();
             for(int i=0; i<s.size(); i++){
+                View v;
                 JsonObject obj = s.get(i).getAsJsonObject();
                 switch (obj.get("clazz").getAsString()){
                     case "edittext":
-                        View v = defaultTxt(obj.get("value").getAsString());
+                        v = defaultTxt(obj.get("value").getAsString());
                         v.setTag(obj.get("nama").getAsString());
                         vGroup.addView(v);
                         break;
                     case "textview":
-                        vGroup.addView(defaultLabel(obj.get("value").getAsString()));
+                        v = defaultLabel(obj.get("value").getAsString());
+                        v.setTag(obj.get("nama").getAsString());
+                        vGroup.addView(v);
                         break;
+                    case "spinner":
+                        v = defalutComboBox(new String[]{obj.get("value").getAsString()});
+                        vGroup.addView(v);
                     case "button":
-                        vGroup.addView(defaultBtn(obj.get("value").getAsString()));
+                        v = defaultBtn(obj.get("value").getAsString());
+                        v.setTag(obj.get("nama").getAsString());
+                        vGroup.addView(v);
                         break;
                     case "horizontal" :
-                        vGroup.addView(masukanWidget(horizontalLayout(),obj));
+                        vGroup.addView(masukanWidget(new HorizontalLayout(mContext),obj));
                         break;
                 }
             }
@@ -116,9 +124,15 @@ public class DynamicLayout {
         return txt;
     }
 
-    public Button defaultBtn(String txt){
+    private Button defaultBtn(String txt){
         Button btn = new Button(mContext);
         btn.setText(txt);
         return btn;
+    }
+
+    private Spinner defalutComboBox(String[] isiCombo){
+        Spinner spn = new Spinner(mContext);
+        spn.setAdapter(new ArrayAdapter<>(mContext,android.R.layout.simple_list_item_1,isiCombo));
+        return spn;
     }
 }
