@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.gson.JsonElement;
@@ -15,7 +14,7 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     ViewGroup root;
 
@@ -27,11 +26,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View dynamicView = dn.buatDynamicLayout(jsonObject);
         setContentView(dynamicView);
         root = (ViewGroup) ((ViewGroup) dynamicView).getChildAt(0);
-        for (int x = 0; x < root.getChildCount(); x++) {
-            if (root.getChildAt(x) instanceof Button) {
-                root.getChildAt(x).setOnClickListener(this);
+        root.findViewWithTag("btnLogin").setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nama = ((EditText) root.findViewWithTag("txtNama")).getText().toString();
+                Log.d("NAMA =>",nama);
             }
-        }
+        });
     }
 
     private JsonObject parseFile(String file) {
@@ -45,11 +46,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return jsonObject;
     }
 
-    @Override
+    /*@Override
     public void onClick(View v) {
-        if(v.findViewWithTag("btnLogin") != null){
+        switch (v.getTag().toString()){
+            case "btnLogin" :
+                String nama = ((EditText) root.findViewWithTag("txtNama")).getText().toString();
+                Log.d("NAMA =>",nama);
+                break;
+        }
+        *//*if(v.findViewWithTag("btnLogin") != null){
             String nama = ((EditText) root.findViewWithTag("tes")).getText().toString();
             Log.d("NAMA =>",nama);
-        }
-    }
+        }*//*
+    }*/
 }

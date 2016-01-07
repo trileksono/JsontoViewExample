@@ -41,7 +41,7 @@
         {
           "type": "field",
           "nama": "tes",
-          "clazz": "Edittext",
+          "clazz": "edittext",
           "value": ""
         }
       ]

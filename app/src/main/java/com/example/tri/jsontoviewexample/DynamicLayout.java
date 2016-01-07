@@ -120,7 +120,9 @@ public class DynamicLayout {
     private EditText defaultTxt(@Nullable String hint){
         EditText txt = new EditText(mContext);
         txt.setMaxLines(1);
-        txt.setHint(hint);
+        if(hint != null){
+            txt.setHint(hint);
+        }
         return txt;
     }
 
