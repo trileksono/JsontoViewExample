@@ -6,3 +6,7 @@
 .DS_Store
 /build
 /captures
+/app/src/androidTest/*
+/app/src/test/*
+.gitignore
+.git
